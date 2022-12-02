@@ -12,7 +12,7 @@ public class ProgressFinish : MonoBehaviour
         progressInProcents.text = $"{GetProgressInProcents().ToString("0.0")}%";
     }
 
-    private float GetProgressInProcents()
+    public float GetProgressInProcents()
     {
         return player.position.z / (Finish.position.z / 100);
     }

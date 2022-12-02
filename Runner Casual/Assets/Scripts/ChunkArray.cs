@@ -23,6 +23,7 @@ public class ChunkArray : MonoBehaviour
         foreach (var chunk in chunks)
             chunk.SetActive(false);        
     }
+
     void OffNeighbours()
     {
         foreach(var chunkArray in neighboursChunkArrays)
@@ -33,6 +34,7 @@ public class ChunkArray : MonoBehaviour
             }
         }
     }
+
     void SetActiveChunks(int index)
     {
         if(index >= 2 && index <= chunks.Length - 3)
@@ -49,6 +51,7 @@ public class ChunkArray : MonoBehaviour
             for(int i = index - 2; i < chunks.Length; i++)
                 chunks[i].SetActive(true);
     }
+
     void SetAcriveNeighbours(int index)
     {
         foreach(var chunksNeighbor in neighboursChunkArrays)

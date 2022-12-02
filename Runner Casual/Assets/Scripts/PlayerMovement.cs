@@ -5,8 +5,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody _playerRigidBody;
     private Vector3 _forwardForce;
     [Range (500,5000)]public float forwardForce;
-    private float horizontalMove;
-    private float yRotateStabilization = -10;
+    private float _horizontalMove;
+    private float _yRotateStabilization = -10;
     
     private void Start()
     {
@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        horizontalMove = -Input.GetAxisRaw("Horizontal");
+        _horizontalMove = -Input.GetAxisRaw("Horizontal");
     }
 
     private void FixedUpdate()
@@ -39,18 +39,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerInput()
     {
-        if (horizontalMove > 0 && _playerRigidBody.velocity.x < 7)
-            _playerRigidBody.AddForce(horizontalMove * 2f, 0, 0, ForceMode.VelocityChange);
-        if (horizontalMove < 0 && _playerRigidBody.velocity.x > -7)
-            _playerRigidBody.AddForce(horizontalMove * 2f, 0, 0, ForceMode.VelocityChange);
+        if (_horizontalMove > 0 && _playerRigidBody.velocity.x < 7)
+            _playerRigidBody.AddForce(_horizontalMove * 2f, 0, 0, ForceMode.VelocityChange);
+        if (_horizontalMove < 0 && _playerRigidBody.velocity.x > -7)
+            _playerRigidBody.AddForce(_horizontalMove * 2f, 0, 0, ForceMode.VelocityChange);
     } 
 
     private void Stabilization()
     {
         if (transform.rotation.y != 0)
-            transform.Rotate(0, yRotateStabilization * transform.rotation.y, 0);
+            transform.Rotate(0, _yRotateStabilization * transform.rotation.y, 0);
 
-        if (horizontalMove == 0)
+        if (_horizontalMove == 0)
         {
             if (_playerRigidBody.velocity.x < 0)
             {
